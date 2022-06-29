@@ -14,5 +14,3 @@ name - Generate random name
 color - Generate random color
 hex - Generate random hex
 ```
-
-'ввв'{: style=“color: red; opacity: 0.80;” }
