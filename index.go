@@ -4,8 +4,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strconv"
-	"strings"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/neotoolkit/faker"
@@ -32,6 +30,12 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if len(update.Message.Command()) == 0 {
+		w.WriteHeader(http.StatusNoContent)
+
+		return
+	}
+
 	var text string
 
 	f := faker.NewFaker()
@@ -48,20 +52,17 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	case "email":
 		text = f.Internet().Email()
 	case "number":
-		args := strings.Split(update.Message.Text, " ")
-		min := 0
-		max := 100
-		if len(args) >= 3 {
-			convMin, err := strconv.Atoi(args[1])
-			if nil == err {
-				min = convMin
-			}
-			convMax, err := strconv.Atoi(args[2])
-			if nil == err {
-				max = convMax
-			}
-		}
-		text = strconv.Itoa(f.Number(min, max))
+		text = number(&f, update.Message.Text)
+	case "firstname":
+		text = f.Person().FirstName()
+	case "lastname":
+		text = f.Person().LastName()
+	case "name":
+		text = f.Person().Name()
+	case "color":
+		text = f.Color().Color()
+	case "hex":
+		text = f.Color().Hex()
 	default:
 		w.WriteHeader(http.StatusNoContent)
 
@@ -69,7 +70,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
-	msg.ParseMode = tgbotapi.ModeMarkdown
+	msg.ParseMode = tgbotapi.ModeMarkdownV2
 
 	if _, err := bot.Send(msg); err != nil {
 		log.Println(err)

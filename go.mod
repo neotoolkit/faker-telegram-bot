@@ -1,4 +1,4 @@
-module github.com/neotoolkit/faker_telegram_bot
+module github.com/neotoolkit/faker-telegram-bot
 
 go 1.17
 
