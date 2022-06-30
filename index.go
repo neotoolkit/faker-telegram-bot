@@ -70,7 +70,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
-	msg.ParseMode = tgbotapi.ModeMarkdownV2
+	msg.ParseMode = tgbotapi.ModeMarkdown
 
 	if _, err := bot.Send(msg); err != nil {
 		log.Println(err)
