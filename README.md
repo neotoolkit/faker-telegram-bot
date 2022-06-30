@@ -1,4 +1,8 @@
-# faker_telegram_bot
+# Faker telegram bot
+
+[Faker](https://github.com/neotoolkit/faker) usage example
+
+Telegram: [@neotoolkit_faker_bot](https:/t.me/neotoolkit_faker_bot)
 
 ## Commands
 ```
