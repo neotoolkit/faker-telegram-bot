@@ -63,6 +63,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		text = f.Color().Color()
 	case "hex":
 		text = f.Color().Hex()
+	case "uuid":
+		text = f.UUID().V4()
 	default:
 		w.WriteHeader(http.StatusNoContent)
 
