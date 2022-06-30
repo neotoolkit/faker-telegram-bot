@@ -17,4 +17,5 @@ lastname - Random last name
 name - Random name
 color - Random color
 hex - Random hex
+uuid - Random UUID v4
 ```
