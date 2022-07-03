@@ -22,3 +22,5 @@ jobs:
             TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
           include: |
             .
+          exclude: |
+            .github
