@@ -69,6 +69,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		text = f.Internet().IPv4()
 	case "ipv6":
 		text = f.Internet().IPv6()
+	case "bool":
+		text = f.Boolean().String()
 	default:
 		w.WriteHeader(http.StatusNoContent)
 
