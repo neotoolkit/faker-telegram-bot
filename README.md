@@ -21,4 +21,5 @@ uuid - Random UUID v4
 ipv4 - Random IP v4
 ipv6 - Random IP v6
 bool - Random boolean (true or false)
+country - Random country
 ```
