@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Deploy Function
         id: sls-func
-        uses: yc-actions/yc-sls-function@v2
+        uses: yc-actions/yc-sls-function@v2.0.0
         with:
           yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
           folder-id: ${{ secrets.YC_FOLDER_ID }}
