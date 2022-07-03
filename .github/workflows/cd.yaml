@@ -23,4 +23,5 @@ jobs:
           include: |
             .
           exclude: |
-            .github
+            ./.git
+            ./.github
