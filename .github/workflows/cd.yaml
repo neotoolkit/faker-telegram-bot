@@ -22,4 +22,3 @@ jobs:
             TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
           include: |
             .
-          service-account: ${{ secrets.YC_SERVICE_ACCOUNT }}
