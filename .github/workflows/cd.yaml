@@ -1,0 +1,23 @@
+name: CD
+on:
+  release:
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Function
+        id: sls-func
+        uses: yc-actions/yc-sls-function@v2
+        with:
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+          folder-id: ${{ secrets.YC_FOLDER_ID }}
+          function-name: 'neotookit-faker-telegram-bot'
+          runtime: 'golang117'
+          memory: '128Mb'
+          entrypoint: 'index.Handler'
+          environment: |
+            TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
+          include: |
+            .
+          service-account: ${{ secrets.YC_SERVICE_ACCOUNT }}
