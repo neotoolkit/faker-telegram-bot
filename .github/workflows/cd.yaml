@@ -21,6 +21,7 @@ jobs:
           environment: |
             TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
           include: |
+            index.go
+            number.go
             go.mod
             go.sum
-            **/*.go
