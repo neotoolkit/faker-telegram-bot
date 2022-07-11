@@ -7,7 +7,7 @@ import (
 	"github.com/neotoolkit/faker"
 )
 
-func number(f *faker.Faker, text string) string {
+func number(text string) string {
 	args := strings.Split(text, " ")
 	min := 0
 	max := 100
@@ -22,5 +22,5 @@ func number(f *faker.Faker, text string) string {
 		}
 	}
 
-	return strconv.Itoa(f.Number(min, max))
+	return strconv.Itoa(faker.Number(min, max))
 }
