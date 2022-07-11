@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/neotoolkit/faker"
@@ -38,41 +39,39 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	var text string
 
-	f := faker.NewFaker()
-
 	switch update.Message.Command() {
 	case "password":
-		text = f.Internet().Password()
+		text = faker.Password()
 	case "username":
-		text = f.Internet().Username()
+		text = faker.Username()
 	case "url":
-		text = f.Internet().URL()
+		text = faker.URL()
 	case "domain":
-		text = f.Internet().Domain()
+		text = faker.Domain()
 	case "email":
-		text = f.Internet().Email()
+		text = faker.Email()
 	case "number":
-		text = number(&f, update.Message.Text)
+		text = number(update.Message.Text)
 	case "firstname":
-		text = f.Person().FirstName()
+		text = faker.FirstName()
 	case "lastname":
-		text = f.Person().LastName()
+		text = faker.LastName()
 	case "name":
-		text = f.Person().Name()
+		text = faker.Name()
 	case "color":
-		text = f.Color().Color()
+		text = faker.Color()
 	case "hex":
-		text = f.Color().Hex()
+		text = faker.Hex()
 	case "uuid":
-		text = f.UUID().V4()
+		text = faker.UUID()
 	case "ipv4":
-		text = f.Internet().IPv4()
+		text = faker.IPv4()
 	case "ipv6":
-		text = f.Internet().IPv6()
+		text = faker.IPv6()
 	case "bool":
-		text = f.Boolean().String()
+		text = strconv.FormatBool(faker.Boolean())
 	case "country":
-		text = f.Address().Country()
+		text = faker.Country()
 	default:
 		w.WriteHeader(http.StatusNoContent)
 
